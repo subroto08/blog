@@ -1,0 +1,79 @@
+/* Background */
+/*body {
+  background: linear-gradient(135deg, #89f7fe, #66a6ff);
+  min-height: 100vh;
+}*/
+
+/* Container */
+.login-container {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  animation: slideUp 0.6s ease;
+}
+
+/* Title */
+.login-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Inputs */
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
+
+/* Focus effect */
+.login-form input:focus {
+  border-color: #ffc107;
+  outline: none;
+  box-shadow: 0 0 6px rgba(255, 193, 7, 0.5);
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #ffc107;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Hover */
+.login-btn:hover {
+  background: #e0a800;
+  transform: scale(1.03);
+}
+
+/* Animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .login-container {
+    margin: 20px;
+    padding: 20px;
+  }
+}

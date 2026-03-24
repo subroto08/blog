@@ -1,27 +1,74 @@
-{% extends  'base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/search_style.css' %}">
 
-   <h3 class=" text-warning" style="letter-spacing: 2px;">Search Term - {{keyword}}</h3>
+<div class="container mt-5">
 
-  <div class="row mb-2">
+  <!-- HEADER + SEARCH -->
+  <div class="search-header">
+    <h2>Search Results for: <span>"{{ keyword }}"</span></h2>
+
+    <!-- Search again -->
+    <form action="{% url 'search' %}" method="GET" class="search-box">
+      <input type="text" name="keyword" placeholder="Search again..." value="{{ keyword }}">
+    </form>
+  </div>
+
+  <div class="row">
+
     {% if blogs %}
-    {% for i in blogs %}
-    <div class="col-md-6">
-      <div class="card border-0" >
-        <div class="card-body">
-          <h3><a href="{% url 'blogs' i.slug %}" class="text-dark">{{ i.title }}</a></h3>
-          <small class="mb-1 text-muted">{{i.created_at | timesince}} ago | {{ i.author }}</small>
-          <p class="card-text">{{ i.short_description | truncatewords:20}}</p>
+
+      {% for i in blogs %}
+      <div class="col-md-6">
+
+        <div class="search-card">
+
+          <!-- IMAGE -->
+          <img src="{{ i.featured_image.url }}" alt="">
+
+          <!-- CONTENT -->
+          <div class="search-card-body">
+
+            <div class="search-meta">
+              {{ i.created_at|timesince }} ago • {{ i.author }}
+            </div>
+
+            <h4>
+              <a href="{% url 'blogs' i.slug %}">
+                {{ i.title }}
+              </a>
+            </h4>
+
+            <p>
+              {{ i.short_description|truncatewords:15 }}
+            </p>
+
+            <a href="{% url 'blogs' i.slug %}" class="read-btn">
+              Read More →
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+      {% endfor %}
+
+    {% else %}
+
+      <!-- EMPTY STATE -->
+      <div class="col-12">
+        <div class="empty-box">
+          <h4>No results found 😔</h4>
+          <p>Try a different keyword or check spelling.</p>
         </div>
       </div>
-    </div>
-   
-    {% endfor %}
-    {% else %}
-     <p>No posts found</p>
+
     {% endif %}
-    
+
   </div>
+
+</div>
 
 {% endblock %}

@@ -1,35 +1,70 @@
-{%extends 'base.html' %}
+{% extends 'base.html' %}
 
-{% block content%}
+{% block content %}
+{% load static %}
 
-    
-  
-  <!-- Featured posts -->
-   <h3 class="text-uppercase text-warning" style="letter-spacing: 2px;">Category - {{category}}</h3>
+<link rel="stylesheet" href="{% static 'css/post_by_category_style.css' %}">
 
-  <div class="row mb-2">
-    {% if posts%}
-    {%for post in posts %}
-    <div class="col-md-6">
-      <div class="card border-0" >
-        <div class="card-body">
-          <h3><a href="{% url 'blogs' post.slug %}" class="text-dark">{{ post.title }}</a></h3>
-          <small class="mb-1 text-muted">{{post.created_at | timesince}} ago | {{ post.author }}</small>
-          <p class="card-text">{{ post.short_description | truncatewords:20}}</p>
+<div class="container mt-5">
+
+  <!-- HEADER -->
+  <h2 class="category-header">
+    Category: <span>{{ category }}</span>
+  </h2>
+
+  <div class="row">
+
+    {% if posts %}
+
+      {% for post in posts %}
+      <div class="col-md-6">
+
+        <div class="category-card">
+
+          <!-- IMAGE -->
+          <img src="{{ post.featured_image.url }}" alt="">
+
+          <!-- CONTENT -->
+          <div class="category-card-body">
+
+            <div class="category-meta">
+              {{ post.created_at|timesince }} ago • {{ post.author }}
+            </div>
+
+            <h4>
+              <a href="{% url 'blogs' post.slug %}">
+                {{ post.title }}
+              </a>
+            </h4>
+
+            <p>
+              {{ post.short_description|truncatewords:15 }}
+            </p>
+
+            <a href="{% url 'blogs' post.slug %}" class="read-btn">
+              Read More →
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+      {% endfor %}
+
+    {% else %}
+
+      <!-- EMPTY STATE -->
+      <div class="col-12">
+        <div class="empty-box">
+          <h4>No posts found 😔</h4>
+          <p>Try exploring other categories.</p>
         </div>
       </div>
-    </div>
-   
-    {% endfor %}
-    {% else %}
-     <p>No posts found</p>
+
     {% endif %}
-    
+
   </div>
-   
-
-
 
 </div>
-{% endblock %}
 
+{% endblock %}
