@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/categories_style.css' %}">
+
+<div class="row">
+
+  <!-- SIDEBAR -->
+  {% include 'dashboard/sidebar.html' %}
+
+  <!-- MAIN CONTENT -->
+  <div class="col-md-9">
+
+    <!-- HEADER -->
+    <div class="page-header">
+      <h2 class="section-title-box"> All Posts </h2>
+      <a href="{% url 'add_post' %}" class="add-btn"> Add New</a>
+    </div>
+
+    <!-- TABLE CARD -->
+    <div class="table-card">
+
+      <table class="table table-hover align-middle">
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Featured</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          {% for post in posts %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><b>{{ post.title }}</b></td>
+            <td>{{ post.category }}</td>
+            <td>{{ post.author }}</td>
+            <td>{{ post.status }}</td>
+            <td>{% if post.is_featured %}<i class="fa fa-check text-success" ></i>{% else %}<i class="fa fa-times text-danger" ></i>{% endif %}</td>
+
+            <td class="text-center action-icons">
+              <a href="{% url 'edit_post' pk=post.id %}" class="edit">✏️</a>
+              <a href="{% url 'delete_post' pk=post.id %}" class="delete">🗑️</a>
+            </td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

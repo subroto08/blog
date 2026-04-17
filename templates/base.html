@@ -15,6 +15,7 @@
 
   <!-- Custom CSS -->
   <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -50,7 +51,7 @@
           <a class="btn btn-warning btn-sm" href="{% url 'login' %}">Login</a>
           <a class="btn btn-outline-secondary btn-sm" href="{% url 'register' %}">Register</a>
         {% else %}
-          <span class="user-info">👤 {{ user }}</span>
+          <span class="user-info"><a href="{% url 'dashboard' %}">Dashboard</a></span>
           &nbsp;
           <a href="{% url 'logout' %}" class="logout-link">Logout</a>
         {% endif %}

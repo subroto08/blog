@@ -1,0 +1,37 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/sidebar_style.css' %}">
+
+<div class="col-md-3">
+
+  <div class="sidebar">
+
+    <h5 class="sidebar-title">⚙️ Dashboard</h5>
+
+    <div class="nav flex-column nav-pills">
+
+      <a href="{% url 'dashboard' %}"
+         class="nav-link {% if '/dashboard/' == request.path %}active{% endif %}">
+         Dashboard
+      </a>
+
+      <a href="{% url 'categories' %}"
+         class="nav-link {% if '/categories/' in request.path %}active{% endif %}">
+         Categories
+      </a>
+
+      <a href="{% url 'posts' %}"
+         class="nav-link {% if '/posts/' in request.path %}active{% endif %}">
+         Posts
+      </a>
+
+      <a href="{% url 'logout' %}"
+         class="nav-link">
+         Logout
+      </a>
+
+    </div>
+
+  </div>
+
+</div>

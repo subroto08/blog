@@ -1,0 +1,49 @@
+/* ===== SIDEBAR CONTAINER ===== */
+.sidebar {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* ===== NAV LINKS ===== */
+.sidebar .nav-link {
+  display: block;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+/* HOVER */
+.sidebar .nav-link:hover {
+  background: #fff3cd;
+  transform: translateX(5px);
+  color: #000;
+}
+
+/* ACTIVE */
+.sidebar .nav-link.active,
+.sidebar .nav-link.bg-warning {
+  background: linear-gradient(135deg, #ffb347, #ffcc33);
+  color: #000 !important;
+  font-weight: 600;
+}
+
+/* ICON STYLE (optional spacing) */
+.sidebar .nav-link i {
+  margin-right: 8px;
+}
+
+/* TITLE */
+.sidebar-title {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* ANIMATION */
+.sidebar {
+  animation: fadeUp 0.5s ease;
+}

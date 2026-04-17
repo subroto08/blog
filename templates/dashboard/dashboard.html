@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/dashboard_style.css' %}">
+
+<div class="row dashboard-wrapper">
+
+  <!-- SIDEBAR -->
+  {% include 'dashboard/sidebar.html' %}
+
+  <!-- MAIN CONTENT -->
+  <div class="col-md-9">
+
+    <!-- UNIQUE WELCOME BOX -->
+    <div class="welcome-box">
+      <h4>👋 Hello, {{ user }}</h4>
+      <p>Welcome back! Here's what's happening with your blog today.</p>
+    </div>
+
+    <!-- STATS -->
+    <div class="row">
+
+      <!-- CATEGORIES -->
+      <div class="col-md-6 mb-4">
+        <div class="stat-card categories">
+
+          <div class="stat-info">
+            <span class="stat-title">Total Categories</span>
+            <span class="stat-count">{{ category_count }}</span>
+          </div>
+
+          <div class="stat-icon-box">
+            🗂️
+          </div>
+
+        </div>
+      </div>
+
+      <!-- POSTS -->
+      <div class="col-md-6 mb-4">
+        <div class="stat-card posts">
+
+          <div class="stat-info">
+            <span class="stat-title">Total Posts</span>
+            <span class="stat-count">{{ blogs_count }}</span>
+          </div>
+
+          <div class="stat-icon-box">
+            📝
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}
