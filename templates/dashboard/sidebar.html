@@ -14,6 +14,12 @@
          class="nav-link {% if '/dashboard/' == request.path %}active{% endif %}">
          Dashboard
       </a>
+      {% if perms.auth.view_user %}
+       <a href="{% url 'users' %}"
+         class="nav-link {% if '/users/' in request.path %}active{% endif %}">
+         Users
+      </a>
+      {% endif %}
 
       <a href="{% url 'categories' %}"
          class="nav-link {% if '/categories/' in request.path %}active{% endif %}">

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/add_post_style.css' %}">
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- SIDEBAR -->
+    {% include 'dashboard/sidebar.html' %}
+
+    <!-- MAIN CONTENT -->
+    <div class="col-md-9 p-4">
+
+      {% if perms.auth.add_user %}
+
+      <!-- BACK BUTTON -->
+      <a href="{% url 'users' %}" class="btn btn-secondary mb-3">
+        ← Back to Users
+      </a>
+
+      <!-- CARD -->
+      <div class="card shadow p-4">
+
+        <h3 class="mb-4">Create New User</h3>
+
+        <form action="{% url 'add_user' %}" method="POST">
+          {% csrf_token %}
+
+          {{ form|crispy }}
+
+          <button type="submit" class="submit-btn">
+            Create User
+          </button>
+
+        </form>
+        {% else %}
+        <div class="text-center mt-5">
+
+  <img src="{% static 'images/not_allowed.png' %}" 
+       alt="No Permission"
+       class="img-fluid"
+       style="max-width: 250px; margin-bottom: 20px;">
+
+  <h4 class="text-danger">Oops! Access Denied 😜</h4>
+  <p>You do not have permission to view this page.</p>
+
+  <a href="{% url 'dashboard' %}" class="btn btn-primary mt-3">
+    Go Back to Dashboard
+  </a>
+
+</div>
+        {% endif %}
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
